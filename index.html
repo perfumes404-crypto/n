@@ -1,348 +1,176 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kafatemor Perfumes | Perfumes originales en Uruguay</title>
-
-<meta name="description" content="Compra perfumes originales al mejor precio en Uruguay. Envíos a todo el país. Kafatemor Perfumes.">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<title>Kafatemor Perfumes</title>
 
 <style>
 
 body{
+font-family: Arial;
+background:#f5f5f5;
 margin:0;
-font-family:Poppins;
-background:#0f0f0f;
-color:white;
-}
-
-h1,h2,h3{
-font-family:"Playfair Display";
-}
-
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
+padding:0;
+text-align:center;
 }
 
 header{
-text-align:center;
-padding:90px 20px;
-background:linear-gradient(180deg,#0f0f0f,#1b1b1b);
-}
-
-.hero-title{
-font-size:50px;
-color:#d4af37;
-}
-
-.hero-subtitle{
-margin:20px 0 40px;
-color:#ccc;
-}
-
-.btn{
-padding:14px 28px;
-border-radius:30px;
-text-decoration:none;
-margin:6px;
-display:inline-block;
-}
-
-.btn-primary{
-background:#d4af37;
-color:black;
-font-weight:bold;
-}
-
-.btn-secondary{
-border:1px solid #d4af37;
-color:#d4af37;
-}
-
-section{
-padding:70px 0;
-}
-
-.catalog{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-
-.card{
-background:#1a1a1a;
-border-radius:12px;
+background:black;
+color:white;
 padding:20px;
-text-align:center;
-transition:.3s;
+font-size:28px;
 }
 
-.card:hover{
-transform:translateY(-8px);
+.container{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+padding:30px;
 }
 
-.card img{
+.product{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.product img{
 width:100%;
-height:260px;
-object-fit:contain;
+border-radius:10px;
 }
 
 .price{
-color:#d4af37;
-font-size:22px;
+font-size:20px;
 margin:10px 0;
+font-weight:bold;
 }
 
-.card button{
-background:#25D366;
-border:none;
-padding:12px 18px;
-border-radius:25px;
+button{
+background:black;
 color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
 cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+background:#333;
 }
 
 .cart-button{
 position:fixed;
 top:20px;
 right:20px;
-background:#d4af37;
-color:black;
-padding:12px 20px;
-border-radius:25px;
+background:black;
+color:white;
+padding:12px 18px;
+border-radius:10px;
+cursor:pointer;
 font-weight:bold;
-cursor:pointer;
 }
 
-.cart-panel{
+#cartMenu{
+display:none;
 position:fixed;
-top:0;
-right:-350px;
-width:350px;
-height:100%;
-background:#1a1a1a;
-padding:20px;
-transition:.3s;
-overflow:auto;
-}
-
-.cart-panel.active{
-right:0;
-}
-
-.cart-item{
-border-bottom:1px solid #333;
-padding:10px 0;
-}
-
-.checkout{
-background:#25D366;
-border:none;
-padding:14px;
-width:100%;
-border-radius:30px;
-color:white;
-margin-top:20px;
-cursor:pointer;
-}
-
-.whatsapp-float{
-position:fixed;
-bottom:20px;
+top:70px;
 right:20px;
-background:#25D366;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-color:white;
-text-decoration:none;
-}
-body{
-overflow-x:hidden;
+background:white;
+border:1px solid #ccc;
+padding:20px;
+border-radius:10px;
+width:260px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-*{
-max-width:100%;
-box-sizing:border-box;
+#cartItems{
+list-style:none;
+padding:0;
 }
+
+#cartItems li{
+margin:8px 0;
+}
+
+.remove{
+background:red;
+padding:4px 8px;
+margin-left:10px;
+font-size:12px;
+}
+
+.whatsapp{
+background:#25D366;
+margin-top:10px;
+width:100%;
+}
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+Kafatemor Perfumes
+</header>
+
 <div class="cart-button" onclick="toggleCart()">
 🛒 Carrito (<span id="cartCount">0</span>)
 </div>
 
-<div class="cart-panel" id="cartPanel">
+<div id="cartMenu">
 
-<h2>Tu carrito</h2>
+<h3>Tu carrito</h3>
 
-<div id="cartItems"></div>
+<ul id="cartItems"></ul>
 
-<button class="checkout" onclick="sendOrder()">
-Enviar pedido por WhatsApp
+<button class="whatsapp" onclick="sendToWhatsapp()">
+Comprar por WhatsApp
 </button>
 
 </div>
-
-<header>
-
-<h1 class="hero-title">Kafatemor Perfumes</h1>
-
-<p class="hero-subtitle">
-Perfumes originales al mejor precio en Uruguay
-</p>
-
-<a href="#catalogo" class="btn btn-primary">Ver perfumes</a>
-
-<a href="https://wa.me/59892436816" class="btn btn-secondary">
-Comprar por WhatsApp
-</a>
-
-</header>
-
-<section id="catalogo">
 
 <div class="container">
 
-<h2 style="text-align:center;color:#d4af37;margin-bottom:40px;">
-Catálogo de perfumes
-</h2>
 <div class="product">
-<img src="honor-glory.jpg" width="200">
-<h3>Honor and Glory</h3>
-<p>$1990</p>
-<button onclick="addToCart('Honor and Glory',1990)">Agregar al carrito</button>
-</div>
-
-<div class="product">
-<img src="khamrah.jpg" width="200">
-<h3>Khamrah</h3>
-<p>$1990</p>
-<button onclick="addToCart('Khamrah',1990)">Agregar al carrito</button>
+<img src="khamrah.jpg">
+<h2>Khamrah</h2>
+<div class="price">$1990</div>
+<button onclick="addToCart('Khamrah',1990)">
+Agregar al carrito
+</button>
 </div>
 
 <div class="product">
-<img src="mandarin-sky.jpg" width="200">
-<h3>Mandarin Sky</h3>
-<p>$1990</p>
-<button onclick="addToCart('Mandarin Sky',1990)">Agregar al carrito</button>
+<img src="honor.jpg">
+<h2>Honor & Glory</h2>
+<div class="price">$1990</div>
+<button onclick="addToCart('Honor & Glory',1990)">
+Agregar al carrito
+</button>
 </div>
 
 <div class="product">
-<img src="fakhar-black.jpg" width="200">
-<h3>Fakhar Black</h3>
-<p>$2090</p>
-<button onclick="addToCart('Fakhar Black',2090)">Agregar al carrito</button>
-</div>
-<div class="catalog" id="catalog"></div>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="container" style="text-align:center;max-width:700px">
-
-<h2>Sobre nosotros</h2>
-
-<p style="color:#ccc">
-Kafatemor Perfumes es un emprendimiento uruguayo dedicado a ofrecer perfumes de alta calidad al mejor precio. Estamos ubicados en Montevideo y Rocha y realizamos envíos a todo el país.
-</p>
-
+<img src="mandarin.jpg">
+<h2>Mandarin Sky</h2>
+<div class="price">$1990</div>
+<button onclick="addToCart('Mandarin Sky',1990)">
+Agregar al carrito
+</button>
 </div>
 
-</section>
-
-<section>
-
-<div class="container" style="text-align:center">
-
-<h2>Seguinos en Instagram</h2>
-
-<a href="https://www.instagram.com/kafatemorperfumes.uy" style="color:#d4af37;font-size:20px">
-@kafatemorperfumes.uy
-</a>
-
 </div>
-
-</section>
-
-<a class="whatsapp-float" href="https://wa.me/59892436816">
-💬
-</a>
 
 <script>
 
-const perfumes = [
+let cart=[];
 
-{
-name:"Honor and Glory",
-price:1990,
-image:"https://images.unsplash.com/photo-1594035910387-fea47794261f"
-},
+function addToCart(name,price){
 
-{
-name:"Khamrah",
-price:1990,
-image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de"
-},
-
-{
-name:"Mandarin Sky",
-price:1990,
-image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539"
-},
-
-{
-name:"Fakhar Black",
-price:2090,
-image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de"
-}
-
-];
-
-const cart = [];
-
-const catalog = document.getElementById("catalog");
-
-perfumes.forEach((p,i)=>{
-
-const card = document.createElement("div");
-
-card.className="card";
-
-card.innerHTML=`
-
-<img src="${p.image}">
-<h3>${p.name}</h3>
-<div class="price">$${p.price}</div>
-<button onclick="addToCart(${i})">
-Agregar al carrito
-</button>
-
-`;
-
-catalog.appendChild(card);
-
-});
-
-function addToCart(index){
-
-cart.push(perfumes[index]);
+cart.push({name,price});
 
 updateCart();
 
@@ -350,86 +178,59 @@ updateCart();
 
 function updateCart(){
 
-const cartItems = document.getElementById("cartItems");
+document.getElementById("cartCount").innerText=cart.length;
 
-const cartCount = document.getElementById("cartCount");
+let cartItems=document.getElementById("cartItems");
 
 cartItems.innerHTML="";
 
-cart.forEach(item=>{
+cart.forEach((item,index)=>{
 
-const div=document.createElement("div");
+let li=document.createElement("li");
 
-div.className="cart-item";
+li.innerHTML=item.name+" $"+item.price+
+` <button class="remove" onclick="removeItem(${index})">❌</button>`;
 
-div.innerText=item.name+" - $"+item.price;
-
-cartItems.appendChild(div);
+cartItems.appendChild(li);
 
 });
 
-cartCount.innerText=cart.length;
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+updateCart();
 
 }
 
 function toggleCart(){
 
-document.getElementById("cartPanel").classList.toggle("active");
+let menu=document.getElementById("cartMenu");
+
+menu.style.display=menu.style.display==="block"?"none":"block";
 
 }
 
-function sendOrder(){
+function sendToWhatsapp(){
 
-let message="Hola! Quiero comprar:%0A";
+let message="Hola! Quiero comprar:%0A%0A";
 
 let total=0;
 
 cart.forEach(item=>{
-
-message+=- ${item.name} $${item.price}%0A;
-
+message+="- "+item.name+" $"+item.price+"%0A";
 total+=item.price;
-
 });
 
-message+=%0ATotal: $${total};
+message+="%0ATotal: $"+total;
 
-window.open(https://wa.me/59892436816?text=${message});
+window.open("https://wa.me/59892436816?text="+message);
 
 }
 
 </script>
-<script>
 
-let cart = [];
-
-function addToCart(name, price){
-cart.push({name, price});
-updateCart();
-}
-
-function updateCart(){
-document.getElementById("cartCount").innerText = cart.length;
-}
-
-function toggleCart(){
-let message = "Hola! Quiero comprar:%0A%0A";
-let total = 0;
-
-cart.forEach(item=>{
-message += "- " + item.name + " $" + item.price + "%0A";
-total += item.price;
-});
-
-message += "%0ATotal: $" + total;
-
-window.open("https://wa.me/59892436816?text=" + message);
-
-}
-
-</script>
 </body>
 </html>
-
-
-
