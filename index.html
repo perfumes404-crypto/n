@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 
@@ -11,19 +11,37 @@
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
 
-body{background:#0f0f0f;color:white}
+body{
+background:#0f0f0f;
+color:white;
+}
 
-.container{max-width:1200px;margin:auto;padding:60px 20px}
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+}
 
-h1,h2{margin-bottom:20px}
+.gold{
+color:#d4af37;
+}
 
-.gold{color:#d4af37}
+h1,h2{
+margin-bottom:20px;
+}
+
+/* HERO */
 
 .hero{
 height:90vh;
-background:url("https://images.unsplash.com/photo-1594035910387-fea47794261f") center/cover;
+background:url("kafatemor.jpg") center/cover;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -36,45 +54,119 @@ padding:40px;
 border-radius:10px;
 }
 
-.btn{
-padding:12px 25px;
-border-radius:30px;
-border:none;
-cursor:pointer;
-background:#d4af37;
-color:black;
-font-weight:600;
+.hero h1{
+font-size:42px;
 }
 
+.btn{
+display:inline-block;
+padding:12px 25px;
+border-radius:30px;
+text-decoration:none;
+margin:5px;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn-primary{
+background:#d4af37;
+color:black;
+border:none;
+}
+
+.btn-primary:hover{
+transform:scale(1.05);
+}
+
+.btn-secondary{
+border:1px solid white;
+color:white;
+}
+
+/* PERFUMES */
+
 .grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.card{
+background:#1c1c1c;
+border-radius:10px;
+overflow:hidden;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-body{
+padding:20px;
+}
+
+.price{
+color:#d4af37;
+margin:10px 0;
+font-size:18px;
+}
+
+/* BENEFICIOS */
+
+.benefits{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+text-align:center;
+}
+
+.benefit{
+background:#1c1c1c;
+padding:20px;
+border-radius:10px;
+}
+
+/* TESTIMONIOS */
+
+.testimonials{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:20px;
 }
 
-.card{
+.testimonial{
 background:#1c1c1c;
 padding:20px;
 border-radius:10px;
+}
+
+/* CTA */
+
+.cta{
+background:#d4af37;
+color:black;
 text-align:center;
+padding:70px 20px;
 }
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:8px;
-margin-bottom:10px;
+/* FOOTER */
+
+footer{
+background:black;
+text-align:center;
+padding:30px;
 }
 
-.price{color:#d4af37;margin:10px 0}
-
-.filters{
-display:flex;
-gap:10px;
-margin-bottom:30px;
-flex-wrap:wrap;
-}
+/* CARRITO */
 
 .cart{
 position:fixed;
@@ -84,7 +176,21 @@ background:#1c1c1c;
 padding:20px;
 border-radius:10px;
 width:260px;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
 }
+
+.item{
+display:flex;
+justify-content:space-between;
+margin-bottom:6px;
+}
+
+.remove{
+color:red;
+cursor:pointer;
+}
+
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -94,13 +200,25 @@ background:#25D366;
 color:white;
 padding:15px 18px;
 border-radius:50%;
-text-decoration:none;
 font-size:22px;
+text-decoration:none;
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
-.grid{grid-template-columns:repeat(2,1fr)}
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.benefits{
+grid-template-columns:repeat(2,1fr);
+}
+
+.testimonials{
+grid-template-columns:1fr;
+}
 
 }
 
@@ -110,96 +228,197 @@ font-size:22px;
 
 <body>
 
+<!-- HERO -->
 
 <section class="hero">
 
 <div class="hero-content">
 
-<h1>Kafatemor <span class="gold">Perfumes</span></h1>
+<h1>Descubrí tu próxima <span class="gold">fragancia favorita</span></h1>
 
-<p>Perfumes originales con envíos a todo Uruguay</p>
+<p>Perfumes de alta calidad con envíos a todo Uruguay</p>
+
+<a href="#perfumes" class="btn btn-primary">Ver perfumes</a>
+
+<a href="https://wa.me/59892436816" class="btn btn-secondary">Comprar por WhatsApp</a>
 
 </div>
 
 </section>
 
-
+<!-- SOBRE NOSOTROS -->
 
 <section class="container">
 
-<h2>🔥 Ofertas</h2>
+<h2>Sobre <span class="gold">Kafatemor Perfumes</span></h2>
 
-<div class="grid">
+<p>
+Kafatemor Perfumes es una empresa dedicada a la venta de perfumes originales y de alta calidad.
+Operamos desde Montevideo y Rocha realizando envíos a todo Uruguay.
+Nuestro objetivo es ofrecer fragancias increíbles a precios competitivos con atención rápida y confiable.
+</p>
 
+</section>
+
+<!-- PERFUMES -->
+
+<section id="perfumes" class="container">
+
+<h2>Perfumes destacados</h2>
 <div class="card">
+
+<img src="khamrah.jpg">
+
+<div class="card-body">
+
 <h3>Khamrah</h3>
+
 <p class="price">$1990</p>
-<button class="btn" onclick="addToCart('Khamrah',1990)">Agregar</button>
+
+<button class="btn btn-primary" onclick="addToCart('Khamrah',1990)">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+<div class="card">
+
+<img src="honor-glory.jpg">
+
+<div class="card-body">
+
+<h3>Honor and Glory</h3>
+
+<p class="price">$1990</p>
+
+<button class="btn btn-primary" onclick="addToCart('Honor and Glory',1990)">
+Agregar al carrito
+</button>
+
+</div>
+
 </div>
 
 <div class="card">
-<h3>Honor & Glory</h3>
-<p class="price">$1990</p>
-<button class="btn" onclick="addToCart('Honor & Glory',1990)">Agregar</button>
-</div>
 
-<div class="card">
+<img src="mandarin-sky.jpg">
+
+<div class="card-body">
+
 <h3>Mandarin Sky</h3>
+
 <p class="price">$1990</p>
-<button class="btn" onclick="addToCart('Mandarin Sky',1990)">Agregar</button>
+
+<button class="btn btn-primary" onclick="addToCart('Mandarin Sky',1990)">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
 </div>
 
 <div class="card">
+
+<img src="fakhar-black.jpg">
+
+<div class="card-body">
+
 <h3>Fakhar Black</h3>
+
 <p class="price">$2090</p>
-<button class="btn" onclick="addToCart('Fakhar Black',2090)">Agregar</button>
+
+<button class="btn btn-primary" onclick="addToCart('Fakhar Black',2090)">
+Agregar al carrito
+</button>
+
+</div>
+
 </div>
 
 </div>
 
 </section>
 
-
-
-<section class="container">
-
-<h2>Catálogo</h2>
-
-<div class="filters">
-
-<select id="categoryFilter" onchange="renderProducts()">
-<option value="all">Todas las categorías</option>
-<option value="arabes">Perfumes Árabes</option>
-<option value="nicho">Perfumes de Nicho</option>
-<option value="designer">Perfumes de Diseñador</option>
-</select>
-
-</div>
-
-<div id="productGrid" class="grid"></div>
-
-</section>
-
-
+<!-- BENEFICIOS -->
 
 <section class="container">
 
 <h2>¿Por qué elegirnos?</h2>
 
-<p>Perfumes originales, precios competitivos y envíos a todo Uruguay desde Montevideo y Rocha.</p>
+<div class="benefits">
+
+<div class="benefit">🚚 Envíos a todo Uruguay</div>
+
+<div class="benefit">🧴 Perfumes originales</div>
+
+<div class="benefit">⚡ Atención rápida</div>
+
+<div class="benefit">💰 Precios competitivos</div>
+
+</div>
 
 </section>
 
+<!-- TESTIMONIOS -->
 
+<section class="container">
 
-<footer class="container">
+<h2>Clientes felices</h2>
+
+<div class="testimonials">
+
+<div class="testimonial">
+Excelente atención y perfumes originales.
+</div>
+
+<div class="testimonial">
+Los mejores precios que encontré en Uruguay.
+</div>
+
+<div class="testimonial">
+Compré Khamrah y el aroma dura todo el día.
+</div>
+
+</div>
+
+</section>
+
+<!-- INSTAGRAM -->
+
+<section class="container" style="text-align:center">
+
+<h2>Seguinos en Instagram</h2>
+
+<a href="https://www.instagram.com/kafatemorperfumes.uy" class="btn btn-primary">
+Ir a Instagram
+</a>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h2>¿Buscás tu próximo perfume?</h2>
+
+<a href="https://wa.me/59892436816" class="btn btn-primary">Escribinos ahora</a>
+
+</section>
+
+<footer>
 
 <p>Kafatemor Perfumes</p>
+
 <p>Montevideo y Rocha - Uruguay</p>
+
+<p>© 2026</p>
 
 </footer>
 
-
+<!-- CARRITO -->
 
 <div class="cart">
 
@@ -209,163 +428,93 @@ font-size:22px;
 
 <p>Total: $<span id="total">0</span></p>
 
-<button class="btn" onclick="sendWhatsApp()">Enviar pedido</button>
+<button class="btn btn-primary" onclick="sendWhatsApp()">
+Enviar pedido
+</button>
 
 </div>
-
-
 
 <a class="whatsapp" href="https://wa.me/59892436816">💬</a>
 
-
-
 <script>
 
-const products=[
-
-{name:"9 AM",category:"arabes"},
-{name:"9 AM Dive",category:"arabes"},
-{name:"9 PM",category:"arabes"},
-{name:"9 PM Elixir",category:"arabes"},
-{name:"Souvenir Desert Rose",category:"arabes"},
-
-{name:"Badee Al Oud Amethyst",category:"arabes"},
-{name:"Noble Blush Badee Al Oud",category:"arabes"},
-{name:"Sublime Badee Al Oud",category:"arabes"},
-
-{name:"Khamrah",category:"arabes"},
-{name:"Khamrah Qahwa",category:"arabes"},
-
-{name:"Yara Candy",category:"arabes"},
-{name:"Yara Moi",category:"arabes"},
-{name:"Yara Rosa",category:"arabes"},
-{name:"Yara Tous",category:"arabes"},
-
-{name:"Club de Nuit Sillage",category:"arabes"},
-{name:"Club de Nuit Untold",category:"arabes"},
-
-{name:"Erba Pura",category:"nicho"},
-{name:"Erba Gold",category:"nicho"},
-{name:"Bharara Bleu",category:"nicho"},
-{name:"Bharara Don",category:"nicho"},
-{name:"Amber Rouge",category:"nicho"},
-{name:"Rosé Eclat",category:"nicho"},
-
-{name:"Y EDP",category:"designer"},
-{name:"MYSLF",category:"designer"},
-{name:"Libre L’Eau Nue",category:"designer"},
-
-{name:"Bleu de Chanel",category:"designer"},
-{name:"Chance",category:"designer"},
-{name:"Coco Mademoiselle",category:"designer"},
-
-{name:"Sauvage",category:"designer"},
-{name:"Miss Dior Essence",category:"designer"},
-
-{name:"1 Million",category:"designer"},
-{name:"Invictus Victory",category:"designer"},
-
-{name:"Eros",category:"designer"},
-{name:"Eros Flame",category:"designer"}
-
-]
-
-
-
-function renderProducts(){
-
-const filter=document.getElementById("categoryFilter").value
-
-const grid=document.getElementById("productGrid")
-
-grid.innerHTML=""
-
-products.forEach(p=>{
-
-if(filter==="all"||p.category===filter){
-
-grid.innerHTML+=`
-
-<div class="card">
-
-<h3>${p.name}</h3>
-
-<button class="btn" onclick="addToCart('${p.name}',0)">Agregar</button>
-
-</div>
-
-`
-
-}
-
-})
-
-}
-
-renderProducts()
-
-
-
-let cart=[]
+let cart=[];
 
 function addToCart(name,price){
 
-cart.push({name,price})
+cart.push({
+name:name,
+price:price
+});
 
-updateCart()
+updateCart();
 
 }
-
-
 
 function removeFromCart(index){
 
-cart.splice(index,1)
+cart.splice(index,1);
 
-updateCart()
+updateCart();
 
 }
-
-
 
 function updateCart(){
 
-let cartItems=document.getElementById("cartItems")
+let cartItems=document.getElementById("cartItems");
 
-cartItems.innerHTML=""
+cartItems.innerHTML="";
 
-let total=0
+let total=0;
 
-cart.forEach((item,i)=>{
+for(let i=0;i<cart.length;i++){
 
-total+=item.price
+let item=cart[i];
+
+total+=item.price;
 
 cartItems.innerHTML+=`
-<div>
-${item.name}
-<span onclick="removeFromCart(${i})">❌</span>
+<div class="item">
+${item.name} $${item.price}
+<span class="remove" onclick="removeFromCart(${i})">❌</span>
 </div>
-`
-
-})
-
-document.getElementById("total").innerText=total
+`;
 
 }
 
+document.getElementById("total").innerText=total;
 
+}
 
 function sendWhatsApp(){
 
-let msg="Hola! Quiero pedir:%0A"
+if(cart.length===0){
 
-cart.forEach(item=>{
+alert("Tu carrito está vacío");
 
-msg+="- "+item.name+"%0A"
+return;
 
-})
+}
 
-window.open("https://wa.me/59892436816?text="+msg)
+let msg="Hola! Quiero pedir:%0A";
+
+for(let i=0;i<cart.length;i++){
+
+msg+="- "+cart[i].name+" $"+cart[i].price+"%0A";
+
+}
+
+let total=0;
+
+for(let i=0;i<cart.length;i++){
+
+total+=cart[i].price;
+
+}
+
+msg+="%0ATotal: $"+total;
+
+window.open("https://wa.me/59892436816?text="+msg);
 
 }
 
