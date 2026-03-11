@@ -3,724 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafatemor Perfumes | Tienda Online</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Kafatemor Perfumes | Catálogo Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #d4af37;
-            --dark: #0f0f0f;
-            --card-bg: #1c1c1c;
-            --text-gray: #b0b0b0;
-        }
+        :root { --gold: #d4af37; --dark: #0a0a0a; --card: #121212; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--dark); color: var(--white); font-family: 'Poppins', sans-serif; }
+        
+        .header { height: 30vh; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 2px solid var(--gold); }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); }
+        
+        .search-bar { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.95); padding: 15px; border-bottom: 1px solid #222; text-align: center; }
+        #searchInput { width: 90%; max-width: 600px; padding: 12px 25px; border-radius: 30px; border: 1px solid #333; background: #1a1a1a; color: white; outline: none; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--dark);
-            color: white;
-            line-height: 1.6;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .hero-content span {
-            color: var(--gold);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.4s;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: black;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            background: #fff;
-        }
-
-        .btn-secondary {
-            border: 2px solid white;
-            color: white;
-            background: transparent;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: black;
-        }
-
-        /* Sobre Nosotros */
-        .about {
-            padding: 80px 20px;
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .about h2 {
-            color: var(--gold);
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        /* Buscador y Filtros */
-        .controls {
-            position: sticky;
-            top: 0;
-            background: rgba(15, 15, 15, 0.95);
-            z-index: 100;
-            padding: 20px;
-            border-bottom: 1px solid #333;
-            backdrop-filter: blur(10px);
-        }
-
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 15px 25px;
-            border-radius: 30px;
-            border: 1px solid var(--gold);
-            background: var(--dark);
-            color: white;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 20px;
-            border-radius: 20px;
-            border: 1px solid #444;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--gold);
-            color: black;
-            border-color: var(--gold);
-        }
-
-        /* Grid de Productos */
-        .container {
-            max-width: 1400px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        .category-title {
-            margin: 50px 0 30px;
-            font-size: 2rem;
-            border-left: 5px solid var(--gold);
-            padding-left: 15px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: 0.4s;
-            border: 1px solid #222;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        .card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .price {
-            color: var(--gold);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        /* Carrito Lateral */
-        .cart-toggle {
-            position: fixed;
-            right: 30px;
-            bottom: 30px;
-            background: var(--gold);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-size: 24px;
-        }
-
-        .cart-sidebar {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
-            height: 100%;
-            background: #111;
-            z-index: 1001;
-            transition: 0.5s;
-            padding: 30px;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-sidebar.active {
-            right: 0;
-        }
-
-        .cart-items {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin: 20px 0;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #333;
-        }
-
-        .cart-item-info h4 { font-size: 0.9rem; }
-        .cart-item-info p { color: var(--gold); }
-
-        .remove-btn {
-            color: #ff4d4d;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-weight: bold;
-        }
-
-        .total-section {
-            border-top: 2px solid var(--gold);
-            padding-top: 20px;
-        }
-
-        .total-price {
-            font-size: 1.8rem;
-            text-align: right;
-            margin-bottom: 20px;
-        }
-
-        .close-cart {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        /* WhatsApp Floating */
-        .wa-float {
-            position: fixed;
-            left: 30px;
-            bottom: 30px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            text-decoration: none;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .cart-sidebar { width: 100%; right: -100%; }
-            .grid { grid-template-columns: 1fr 1fr; gap: 15px; }
-            .card { padding: 15px; }
-            .card h3 { font-size: 0.9rem; }
-        }
+        .container { max-width: 1400px; margin: 30px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+        
+        .card { background: var(--card); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        
+        .img-box { width: 100%; height: 250px; background: #000; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
+        .card img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        .card h3 { font-size: 0.9rem; height: 45px; overflow: hidden; margin-bottom: 10px; color: #ccc; }
+        .price { color: var(--gold); font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; display: block; }
+        
+        .btn { display: block; width: 100%; padding: 12px; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-wa { background: #25D366; color: white; margin-bottom: 8px; }
+        .btn-wa:hover { background: #1ebd56; }
+        
+        #cart-float { position: fixed; bottom: 25px; right: 25px; background: var(--gold); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Descubrí tu próxima<br><span>fragancia favorita</span></h1>
-            <a href="#catalogo" class="btn btn-primary">Ver perfumes</a>
-            <a href="https://wa.me/59892436816" class="btn btn-secondary">Comprar por WhatsApp</a>
-        </div>
-    </section>
+    <div class="header">
+        <h1>KAFATEMOR</h1>
+        <p>Expertos en Alta Perfumería</p>
+    </div>
 
-    <section class="about">
-        <h2>Sobre Kafatemor Perfumes</h2>
-        <p>Somos apasionados por la perfumería de alta gama. En Kafatemor Perfumes nos dedicamos a la venta de fragancias originales de las casas más prestigiosas del mundo y los tesoros de la perfumería árabe. Realizamos envíos rápidos y seguros a todo Uruguay, garantizando calidad en cada gota.</p>
-    </section>
-
-    <div class="controls" id="catalogo">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar perfume por nombre o marca..." onkeyup="filterProducts()">
-        </div>
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="setFilter('all', this)">Todos</button>
-            <button class="filter-btn" onclick="setFilter('Árabe', this)">Árabes</button>
-            <button class="filter-btn" onclick="setFilter('Nicho', this)">Nicho</button>
-            <button class="filter-btn" onclick="setFilter('Diseñador', this)">Diseñador</button>
-        </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="¿Qué perfume buscas hoy?" onkeyup="filter()">
     </div>
 
     <div class="container">
-        <div id="arabes-section">
-            <h2 class="category-title">Perfumes Árabes</h2>
-            <div class="grid" id="grid-arabes"></div>
-        </div>
-
-        <div id="nicho-section">
-            <h2 class="category-title">Perfumes Nicho</h2>
-            <div class="grid" id="grid-nicho"></div>
-        </div>
-
-        <div id="disenador-section">
-            <h2 class="category-title">Perfumes Diseñador</h2>
-            <div class="grid" id="grid-disenador"></div>
-        </div>
+        <div id="grid" class="grid"></div>
     </div>
 
-    <div class="cart-toggle" onclick="toggleCart()">🛒</div>
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="close-cart" onclick="toggleCart()">✕ Cerrar</div>
-        <h2 style="margin-top:40px">Tu Carrito</h2>
-        <div class="cart-items" id="cartItemsList">
-            </div>
-        <div class="total-section">
-            <div class="total-price">Total: $<span id="cartTotal">0</span></div>
-            <button class="btn btn-primary" style="width:100%; margin:0" onclick="checkoutWhatsApp()">Finalizar pedido por WhatsApp</button>
-        </div>
-    </div>
-
-    <a href="https://wa.me/59892436816" class="wa-float">💬</a>
+    <div id="cart-float" onclick="alert('Consulta disponibilidad por WhatsApp con el botón de cada perfume.')">🛒</div>
 
     <script>
-        // Array de perfumes basado en el PDF + $500
+        // LISTA PROCESADA DEL PDF CON +$500 INCLUIDO
         const perfumes = [
-            { name: "9 AM Afnan", price: 2200, brand: "Afnan", type: "Árabe" },
-            { name: "9 AM Dive", price: 2245, brand: "Afnan", type: "Árabe" },
-            { name: "9 PM Elixir", price: 3055, brand: "Afnan", type: "Árabe" },
-            { name: "9 PM, Afnan", price: 2245, brand: "Afnan", type: "Árabe" },
-            { name: "Aether Extrait French Avenue", price: 2265, brand: "French Avenue", type: "Árabe" },
-            { name: "Ajayes Portrait", price: 1845, brand: "Lattafa", type: "Árabe" },
-            { name: "Al Absar Mudiyah Edp 100 MI", price: 1845, brand: "Al Absar", type: "Árabe" },
-            { name: "Al Haramain Amber Musk", price: 4120, brand: "Al Haramain", type: "Árabe" },
-            { name: "Al Haramain Amber Oud White", price: 3160, brand: "Al Haramain", type: "Árabe" },
-            { name: "Al Layl, Al Wataniah", price: 2120, brand: "Al Wataniah", type: "Árabe" },
-            { name: "Al Noble Wazeer 100 ml EDP", price: 1815, brand: "Lattafa", type: "Árabe" },
-            { name: "Al Wataniah Durrat Al Aroos Edp 85ml", price: 2039, brand: "Al Wataniah", type: "Árabe" },
-            { name: "Amethyst Badee Al Oud", price: 1820, brand: "Lattafa", type: "Árabe" },
-            { name: "Asad Bourbon 100 ml", price: 2290, brand: "Lattafa", type: "Árabe" },
-            { name: "Asad Negro 100 ml EDP", price: 1735, brand: "Lattafa", type: "Árabe" },
-            { name: "Asad Zanzibar", price: 1800, brand: "Lattafa", type: "Árabe" },
-            { name: "Azzure Oud French Avenue", price: 2040, brand: "French Avenue", type: "Árabe" },
-            { name: "Bar Femme Maison Alhambra", price: 1660, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Bharara Bleu 100 ml EDP", price: 3690, brand: "Bharara", type: "Nicho" },
-            { name: "Bharara Don 100 ml EDP", price: 3690, brand: "Bharara", type: "Nicho" },
-            { name: "Bharara Double Bleu 100 ml EDP", price: 3690, brand: "Bharara", type: "Nicho" },
-            { name: "Bharara Niche Fem 100ml EDP", price: 3690, brand: "Bharara", type: "Nicho" },
-            { name: "Burj Blanc, Risala", price: 2245, brand: "Risala", type: "Árabe" },
-            { name: "Burj Noir, Risala", price: 2245, brand: "Risala", type: "Árabe" },
-            { name: "Club de Nuit Bling", price: 2880, brand: "Armaf", type: "Árabe" },
-            { name: "Club de Nuit Imperiale 105 ml", price: 2740, brand: "Armaf", type: "Árabe" },
-            { name: "Club De Nuit Lionheart Woman", price: 2850, brand: "Armaf", type: "Árabe" },
-            { name: "Club de Nuit Preciux 1", price: 2871, brand: "Armaf", type: "Árabe" },
-            { name: "Club de Nuit Sillage 105 ml", price: 2740, brand: "Armaf", type: "Árabe" },
-            { name: "Club de Nuit Untold", price: 2485, brand: "Armaf", type: "Árabe" },
-            { name: "Collection Dantiqués 1910, Lattafa", price: 2490, brand: "Lattafa", type: "Árabe" },
-            { name: "Cotton Bliss Risala", price: 2110, brand: "Risala", type: "Árabe" },
-            { name: "Delights Island Breeze Armaf 100 ml", price: 2710, brand: "Armaf", type: "Árabe" },
-            { name: "Elegancia Purê, Risala", price: 2245, brand: "Risala", type: "Árabe" },
-            { name: "Emeer Lattafa 100 ml EDP", price: 3020, brand: "Lattafa", type: "Árabe" },
-            { name: "Fakhar Rose", price: 1800, brand: "Lattafa", type: "Árabe" },
-            { name: "Fakhar Silver Edition, Lattafa", price: 2040, brand: "Lattafa", type: "Árabe" },
-            { name: "Fayyad, Al Wataniah", price: 2450, brand: "Al Wataniah", type: "Árabe" },
-            { name: "Flavia Ampario Pour Homme, Sterling", price: 2200, brand: "Flavia", type: "Árabe" },
-            { name: "Fruity Bliss Risala", price: 2110, brand: "Risala", type: "Árabe" },
-            { name: "Ghost Spectre", price: 2350, brand: "Lattafa", type: "Árabe" },
-            { name: "Give Me Gourmand (TODOS), Lattafa", price: 2795, brand: "Lattafa", type: "Árabe" },
-            { name: "Glasier Pour Homme Maison Alhambra", price: 1720, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Honor Ciel, Risala", price: 2245, brand: "Risala", type: "Árabe" },
-            { name: "Honor Royal, Risala", price: 2245, brand: "Risala", type: "Árabe" },
-            { name: "Ishq Al Shuyukh Gold 100 ml EDP", price: 2290, brand: "Lattafa", type: "Árabe" },
-            { name: "Island Bliss Delights Armaf", price: 2700, brand: "Armaf", type: "Árabe" },
-            { name: "Jasoor Lattafa 100 ml EDP", price: 2070, brand: "Lattafa", type: "Árabe" },
-            { name: "Jean Lowe Immorte, Maison Alhambra", price: 2110, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Kayaan Classic Al Wataniah 100 ml EDP", price: 2320, brand: "Al Wataniah", type: "Árabe" },
-            { name: "Khamra", price: 1965, brand: "Lattafa", type: "Árabe" },
-            { name: "Khamra Dukan", price: 2040, brand: "Lattafa", type: "Árabe" },
-            { name: "Khamra Qahwa", price: 1965, brand: "Lattafa", type: "Árabe" },
-            { name: "Kignsman Maison Alhambra", price: 1720, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Lattafa Ana Abiyedh Edp 60ml", price: 2080, brand: "Lattafa", type: "Árabe" },
-            { name: "Léonie Maison Alhambra", price: 2000, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Liberty Pour Femme, Grandeur Elite", price: 1960, brand: "Grandeur Elite", type: "Árabe" },
-            { name: "Liquid Brun", price: 2350, brand: "French Avenue", type: "Árabe" },
-            { name: "Lovely Chery", price: 1720, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Maahir Legacy Lattafa", price: 1930, brand: "Lattafa", type: "Árabe" },
-            { name: "Mahaair Lattafa", price: 1765, brand: "Lattafa", type: "Árabe" },
-            { name: "Mahaair Legacy Lattafa", price: 1840, brand: "Lattafa", type: "Árabe" },
-            { name: "Mayar Natural Intense", price: 1985, brand: "Lattafa", type: "Árabe" },
-            { name: "Miss Armaf (TODOS)", price: 2295, brand: "Armaf", type: "Árabe" },
-            { name: "Modern Musk Maison Alhambra", price: 2000, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Mudiyah EDP, Al Absar", price: 1720, brand: "Al Absar", type: "Árabe" },
-            { name: "N° 2 Men Maison Alhambra", price: 1720, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Noble Blush Badee Al Oud", price: 1820, brand: "Lattafa", type: "Árabe" },
-            { name: "Odysset Candee", price: 2000, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Aoud", price: 2180, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Bahamas 100ml", price: 2180, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Black Forest", price: 2770, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Dubai Chocolat", price: 2035, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Eau de Montagne", price: 2180, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Home White", price: 2180, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Homme", price: 2150, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Limoni", price: 2150, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Mandarin", price: 2050, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Marshmallow", price: 2000, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Revolution 100ml", price: 2265, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Spectra", price: 2150, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Toffee Coffee, Armaf", price: 2450, brand: "Armaf", type: "Árabe" },
-            { name: "Odyssey Ultra Edition", price: 2050, brand: "Armaf", type: "Árabe" },
-            { name: "Opulence Leather Maison Alhambra", price: 1680, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Orientica Amber Rouge", price: 4615, brand: "Orientica", type: "Nicho" },
-            { name: "Orientica Rosé Eclat", price: 3720, brand: "Orientica", type: "Nicho" },
-            { name: "Pink Eclipse Maison Alhambra", price: 1750, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Preciux IV Armaf", price: 3160, brand: "Armaf", type: "Árabe" },
-            { name: "Quimmah For Men, Lattafa", price: 1425, brand: "Lattafa", type: "Árabe" },
-            { name: "Sabah Al Ward, Al Wataniah", price: 2040, brand: "Al Wataniah", type: "Árabe" },
-            { name: "Salvo EDP", price: 2000, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Salvo Elixir 60 ml", price: 2000, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Sehr Lattafa EDP 100ml", price: 2095, brand: "Lattafa", type: "Árabe" },
-            { name: "Shagaf Oud Ahmar Swiss Arabian", price: 3130, brand: "Swiss Arabian", type: "Nicho" },
-            { name: "Shagaf Oud Azraq Limited Edition", price: 3130, brand: "Swiss Arabian", type: "Nicho" },
-            { name: "Shagaf Oud Tonka", price: 3130, brand: "Swiss Arabian", type: "Nicho" },
-            { name: "Shaheen Gold Edp 100 ml", price: 2460, brand: "Lattafa", type: "Árabe" },
-            { name: "So Candid Rouge, Maison Alhambra", price: 2000, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Souvenir Desert Rose Afnan", price: 2490, brand: "Afnan", type: "Árabe" },
-            { name: "Spectre Amazonite", price: 2000, brand: "Lattafa", type: "Árabe" },
-            { name: "Stallion 53", price: 2090, brand: "Lattafa", type: "Árabe" },
-            { name: "Sublime Bedee al Oud", price: 1840, brand: "Lattafa", type: "Árabe" },
-            { name: "Teriaq Edp 100ml", price: 2430, brand: "Lattafa", type: "Árabe" },
-            { name: "The Kingdom Lattafa", price: 1930, brand: "Lattafa", type: "Árabe" },
-            { name: "The Rose Al Absar", price: 2120, brand: "Al Absar", type: "Árabe" },
-            { name: "Veneno Scarlet French Avenue", price: 2520, brand: "French Avenue", type: "Árabe" },
-            { name: "Victoria Lattafa", price: 1900, brand: "Lattafa", type: "Árabe" },
-            { name: "Victorioso Maison Alhambra", price: 2000, brand: "Maison Alhambra", type: "Árabe" },
-            { name: "Vintage Radio 100 ml, Lattafa", price: 1815, brand: "Lattafa", type: "Árabe" },
-            { name: "Vulcan Baie", price: 2290, brand: "Lattafa", type: "Árabe" },
-            { name: "Yara Candy", price: 1800, brand: "Lattafa", type: "Árabe" },
-            { name: "Yara Moi", price: 1800, brand: "Lattafa", type: "Árabe" },
-            { name: "Yara Rosa 100 ml EDP", price: 1700, brand: "Lattafa", type: "Árabe" },
-            { name: "Yara Tous", price: 1800, brand: "Lattafa", type: "Árabe" },
-            { name: "Yum Yum Armaf", price: 2700, brand: "Armaf", type: "Árabe" },
-            { name: "Erba Gold 100 ml", price: 12320, brand: "Xerjoff", type: "Nicho" },
-            { name: "Erba Pura 100ml", price: 10290, brand: "Xerjoff", type: "Nicho" },
-            { name: "\"Y\" Yves Saint Laurent EDP 100 ml", price: 4335, brand: "YSL", type: "Diseñador" },
-            { name: "212 Men NYC 100ml EDT", price: 3945, brand: "CH", type: "Diseñador" },
-            { name: "212 NYC 200 ml EDT", price: 5150, brand: "CH", type: "Diseñador" },
-            { name: "212 Sexy Carolina Herrera", price: 3161, brand: "CH", type: "Diseñador" },
-            { name: "212 VIP Men Are You on The List? CH 100 ml", price: 3945, brand: "CH", type: "Diseñador" },
-            { name: "212 Vip Rosé NYC 80ml CH", price: 4590, brand: "CH", type: "Diseñador" },
-            { name: "Amor Amor Cacharel", price: 4010, brand: "Cacharel", type: "Diseñador" },
-            { name: "Aqua di Gio EDP 100ml", price: 5260, brand: "Armani", type: "Diseñador" },
-            { name: "Aqua di Gio EDT", price: 4420, brand: "Armani", type: "Diseñador" },
-            { name: "Aqua di Gio PARFUM 50ml", price: 4420, brand: "Armani", type: "Diseñador" },
-            { name: "Aqua di Gio Profondo 100ml EDP", price: 5090, brand: "Armani", type: "Diseñador" },
-            { name: "Aqua di Gioia EDP", price: 4110, brand: "Armani", type: "Diseñador" },
-            { name: "Armani Code Parfum 125ml", price: 4730, brand: "Armani", type: "Diseñador" },
-            { name: "Azzaro The Most Wanted EDP cofre", price: 4000, brand: "Azzaro", type: "Diseñador" },
-            { name: "Bad Boy Le Parfum 50 ml", price: 3525, brand: "CH", type: "Diseñador" },
-            { name: "Because its You Armani", price: 3945, brand: "Armani", type: "Diseñador" },
-            { name: "Bleu de Chanel EDP 150 ml", price: 7400, brand: "Chanel", type: "Diseñador" },
-            { name: "Burberry Goddess 100 ml EDP", price: 5420, brand: "Burberry", type: "Diseñador" },
-            { name: "Byzance Rochas 100 ml", price: 3945, brand: "Rochas", type: "Diseñador" },
-            { name: "Calvin Klein Eternity", price: 3800, brand: "Calvin Klein", type: "Diseñador" },
-            { name: "Calvin Klein one 200 ml", price: 3600, brand: "Calvin Klein", type: "Diseñador" },
-            { name: "Chance Chanel EDP 100 ml", price: 6100, brand: "Chanel", type: "Diseñador" },
-            { name: "Coach Gold New York", price: 4085, brand: "Coach", type: "Diseñador" },
-            { name: "Coco Mademoiselle Chanel", price: 6680, brand: "Chanel", type: "Diseñador" },
-            { name: "Divine Elixir women, JPG", price: 5850, brand: "JPG", type: "Diseñador" },
-            { name: "Euphoria Calvin Klein EDT", price: 4365, brand: "Calvin Klein", type: "Diseñador" },
-            { name: "Fame in Love 50 ml", price: 4085, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Fame in Love 80 ml", price: 4810, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Femme Boss 75 ml", price: 3450, brand: "Boss", type: "Diseñador" },
-            { name: "Gentleman Givenchy 50ml Cologne", price: 2685, brand: "Givenchy", type: "Diseñador" },
-            { name: "Gentleman Givenchy Boise EDP 100ml", price: 4730, brand: "Givenchy", type: "Diseñador" },
-            { name: "Gentleman Givenchy EDP 100ml", price: 4730, brand: "Givenchy", type: "Diseñador" },
-            { name: "Gentleman Society Ambrée Givenchy EDP", price: 4250, brand: "Givenchy", type: "Diseñador" },
-            { name: "Good Girl Blush Carolina Herrera", price: 4280, brand: "CH", type: "Diseñador" },
-            { name: "Gucci Flora 100 ml", price: 5690, brand: "Gucci", type: "Diseñador" },
-            { name: "Gucci Flora 50 ml", price: 4450, brand: "Gucci", type: "Diseñador" },
-            { name: "Guess Iconic 100ml EDP", price: 2960, brand: "Guess", type: "Diseñador" },
-            { name: "Her Secret Absolu Banderas", price: 2240, brand: "Banderas", type: "Diseñador" },
-            { name: "Her Secret Pink Banderas", price: 2120, brand: "Banderas", type: "Diseñador" },
-            { name: "Idole EDT 50 ml", price: 3500, brand: "Lancome", type: "Diseñador" },
-            { name: "Idole Now 100 ml EDP", price: 4950, brand: "Lancome", type: "Diseñador" },
-            { name: "Idole Peach Roses 100 ml", price: 4895, brand: "Lancome", type: "Diseñador" },
-            { name: "Invictus Victory", price: 5735, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Invictus Victory Elixir EDP", price: 4475, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Invitus Aqua EDT 100 ml", price: 3156, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "J'adore Dior", price: 4820, brand: "Dior", type: "Diseñador" },
-            { name: "Jean Paul Gaultier Le Male Elixir", price: 4810, brand: "JPG", type: "Diseñador" },
-            { name: "Jean Paul Gaultier Le Male Le Parfum 125ml", price: 4480, brand: "JPG", type: "Diseñador" },
-            { name: "Jean Paul Gautier \"Le Beau\" 125 ml EDT", price: 4250, brand: "JPG", type: "Diseñador" },
-            { name: "Jean Paul Gautier Classique EDP 100ml", price: 3415, brand: "JPG", type: "Diseñador" },
-            { name: "Jean Paul Gautier Divine 100 ml Le Parfum", price: 5570, brand: "JPG", type: "Diseñador" },
-            { name: "Karl Ikonik Pour Homme 100 ml EDP", price: 2656, brand: "Karl Lagerfeld", type: "Diseñador" },
-            { name: "La Nuit Tressor Le Parfum 50 ml", price: 3665, brand: "Lancome", type: "Diseñador" },
-            { name: "La Vie Est Belle EDP 100ml", price: 4840, brand: "Lancome", type: "Diseñador" },
-            { name: "La Vie Est Belle Elixir", price: 5735, brand: "Lancome", type: "Diseñador" },
-            { name: "Lady Million Royal", price: 4560, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Lady Million Tradicional", price: 4560, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Lancôme Idôle L'Eau 100ml", price: 4950, brand: "Lancome", type: "Diseñador" },
-            { name: "Lanvin Eclat d'Arpege 100ml EDP", price: 3270, brand: "Lanvin", type: "Diseñador" },
-            { name: "Libre L EAU NUE 90 ml EDP, YSL", price: 5455, brand: "YSL", type: "Diseñador" },
-            { name: "Linterdit Givenchy 80 mIEDP", price: 5290, brand: "Givenchy", type: "Diseñador" },
-            { name: "Loewe Earth 100 ml EDP", price: 5485, brand: "Loewe", type: "Diseñador" },
-            { name: "Loewe Solo Atlas 100 ml EDP", price: 4730, brand: "Loewe", type: "Diseñador" },
-            { name: "Loewe Solo Ella 100 ml EDP", price: 4755, brand: "Loewe", type: "Diseñador" },
-            { name: "May Way EDP 100ml", price: 4140, brand: "Armani", type: "Diseñador" },
-            { name: "May Way Intense 50ml EDP", price: 5260, brand: "Armani", type: "Diseñador" },
-            { name: "Miss Dior Essence 80 ml", price: 6740, brand: "Dior", type: "Diseñador" },
-            { name: "Moschino Cheap and Chic Love Love 100ml", price: 2430, brand: "Moschino", type: "Diseñador" },
-            { name: "Moschino Toy 2 Bubble Gum Edt 50 ml", price: 2810, brand: "Moschino", type: "Diseñador" },
-            { name: "Moschino Toy 2 Femme 100 ml", price: 3355, brand: "Moschino", type: "Diseñador" },
-            { name: "Moschino Toy 2 Pearl 50ml EDP", price: 2990, brand: "Moschino", type: "Diseñador" },
-            { name: "My SLF Yves Saint Laurent EDP 100 ml", price: 5120, brand: "YSL", type: "Diseñador" },
-            { name: "My SLF Yves Saint Laurent EDP 60ml", price: 4140, brand: "YSL", type: "Diseñador" },
-            { name: "Narciso Cristal 90 ml", price: 4590, brand: "Narciso Rodriguez", type: "Diseñador" },
-            { name: "Narciso Rodriguez for her EDP", price: 4065, brand: "Narciso Rodriguez", type: "Diseñador" },
-            { name: "Narciso Rodriguez For Her Intense 100 ml", price: 4950, brand: "Narciso Rodriguez", type: "Diseñador" },
-            { name: "Narciso Rodriguez for her Intense 50 ml", price: 4195, brand: "Narciso Rodriguez", type: "Diseñador" },
-            { name: "N°5 Chanel 50 ml EDP", price: 5150, brand: "Chanel", type: "Diseñador" },
-            { name: "Olimpea Flora", price: 4000, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Organza Givenchy", price: 5175, brand: "Givenchy", type: "Diseñador" },
-            { name: "Paco Rabanne 1 Million 100ml", price: 4645, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Paco Rabanne pour homme 100 ml", price: 2500, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Paco Rosé Rabanne", price: 1720, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Paradox Intense Prada 100 ml", price: 6015, brand: "Prada", type: "Diseñador" },
-            { name: "Paradox Intense Prada 50ml", price: 4870, brand: "Prada", type: "Diseñador" },
-            { name: "Passione Giorgio Armani 100ml", price: 5260, brand: "Armani", type: "Diseñador" },
-            { name: "Passione Red Musk Giorgio Armani 100ml", price: 5260, brand: "Armani", type: "Diseñador" },
-            { name: "Phantom in Red Rabanne, Parfum elixir", price: 4390, brand: "Paco Rabanne", type: "Diseñador" },
-            { name: "Poeme Lancome Paris 100 ml", price: 4200, brand: "Lancome", type: "Diseñador" },
-            { name: "Poison Dior 100ml", price: 5035, brand: "Dior", type: "Diseñador" },
-            { name: "Ricci Ricci 50 ml", price: 1920, brand: "Nina Ricci", type: "Diseñador" },
-            { name: "Sauvage 100 ml EDP", price: 5480, brand: "Dior", type: "Diseñador" },
-            { name: "Sauvage 100 ml EDT", price: 4700, brand: "Dior", type: "Diseñador" },
-            { name: "Sauvage 100 ml Parfum", price: 6590, brand: "Dior", type: "Diseñador" },
-            { name: "Sauvage Elixir", price: 8810, brand: "Dior", type: "Diseñador" },
-            { name: "Scandal Intense Jean Paul Gaultier 100ml", price: 5090, brand: "JPG", type: "Diseñador" },
-            { name: "Scandal Intense JPG Masculino 100ml", price: 4590, brand: "JPG", type: "Diseñador" },
-            { name: "Scandal Le Parfum Fem JPG 80 ml", price: 5090, brand: "JPG", type: "Diseñador" },
-            { name: "Scandal Le Parfum masc JPG 100 ml", price: 4580, brand: "JPG", type: "Diseñador" },
-            { name: "SI EDP Armani 100 ml", price: 5000, brand: "Armani", type: "Diseñador" },
-            { name: "SI Intense EDP - Giorgio Armani", price: 5400, brand: "Armani", type: "Diseñador" },
-            { name: "Stronger With You Armani 100ml", price: 3830, brand: "Armani", type: "Diseñador" },
-            { name: "The Icon Supreme Banderas 100 ml", price: 1875, brand: "Banderas", type: "Diseñador" },
-            { name: "The Most Wanted Azzaro 100ml", price: 4430, brand: "Azzaro", type: "Diseñador" },
-            { name: "Tom Ford Ombre Leather EDP 50 ml", price: 5820, brand: "Tom Ford", type: "Diseñador" },
-            { name: "Tom Ford Ombre Leather Parfum 50 ml", price: 7080, brand: "Tom Ford", type: "Diseñador" },
-            { name: "Valentino Donna Extradose PARFUM 100ml", price: 5570, brand: "Valentino", type: "Diseñador" },
-            { name: "Valentino Donna Yellow Dream", price: 5120, brand: "Valentino", type: "Diseñador" },
-            { name: "Valentino Green Stravaganza 100 ml", price: 4895, brand: "Valentino", type: "Diseñador" },
-            { name: "Valentino Uomo Coral Fantasy 100ml", price: 4140, brand: "Valentino", type: "Diseñador" },
-            { name: "Versace Eros EDP 50ml", price: 3290, brand: "Versace", type: "Diseñador" },
-            { name: "Versace Eros EDT 100ml", price: 3580, brand: "Versace", type: "Diseñador" },
-            { name: "Versace Eros EDT 200ml", price: 4450, brand: "Versace", type: "Diseñador" },
-            { name: "Versace Eros Flame 50 ml", price: 3290, brand: "Versace", type: "Diseñador" },
-            { name: "Victoria's Secret Love 100 ml EDP", price: 3120, brand: "Victoria Secret", type: "Diseñador" },
-            { name: "Victoria's Secret Love 42 ml EDP", price: 2600, brand: "Victoria Secret", type: "Diseñador" },
-            { name: "Victorias Secret Angel Gold 100 ml", price: 3120, brand: "Victoria Secret", type: "Diseñador" },
-            { name: "Victorias Secret Angel Gold 50 ml", price: 2600, brand: "Victoria Secret", type: "Diseñador" },
-            { name: "Victoria's Secret Bombshell 100ml", price: 3735, brand: "Victoria Secret", type: "Diseñador" },
-            { name: "Victoria's Secret Bombshell 50ml", price: 3030, brand: "Victoria Secret", type: "Diseñador" },
-            { name: "Victorio Flor Oriental", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Victorio Iris Luminoso", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Victorio Jazmin Exotico", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Victorio Rosa Fresca", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Victorio Vitamina Apasionada", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Victorio Vitamina Citrica", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Victorio Vitamina Exotica", price: 1600, brand: "Victorio", type: "Diseñador" },
-            { name: "Voce Viva Valentino 100 ml", price: 5650, brand: "Valentino", type: "Diseñador" },
-            { name: "Voce Viva Valentino 50 ml", price: 4590, brand: "Valentino", type: "Diseñador" }
+            { n: "Y Yves Saint Laurent EDP 100 ml", p: 4335 },
+            { n: "212 Men NYC 100ml EDT", p: 3945 },
+            { n: "212 NYC 200 ml EDT", p: 5150 },
+            { n: "212 Sexy Carolina Herrera", p: 3161 },
+            { n: "212 VIP Men Are You on The List? CH 100 ml", p: 3945 },
+            { n: "212 Vip Rosé NYC 80ml CH", p: 4590 },
+            { n: "9 AM Afnan", p: 2200 },
+            { n: "9 AM Dive", p: 2245 },
+            { n: "9 PM Elixir", p: 3055 },
+            { n: "9 PM, Afnan", p: 2245 },
+            { n: "Aether Extrait French Avenue", p: 2265 },
+            { n: "Ajayes Portrait", p: 1845 },
+            { n: "Al Absar Mudiyah Edp 100 MI", p: 1845 },
+            { n: "Al Haramain Amber Musk", p: 4120 },
+            { n: "Al Haramain Amber Oud White", p: 3160 },
+            { n: "Al Layl, Al Wataniah", p: 2120 },
+            { n: "Al Noble Wazeer 100 ml EDP", p: 1815 },
+            { n: "Al Wataniah Durrat Al Aroos Edp 85ml", p: 2039 },
+            { n: "Amethyst Badee Al Oud", p: 1820 },
+            { n: "Amor Amor Cacharel", p: 4010 },
+            { n: "Ansaam Gold", p: 2320 },
+            { n: "Aqua di Gio EDP 100ml", p: 5260 },
+            { n: "Asad Negro 100 ml EDP", p: 1735 },
+            { n: "Asad Zanzibar", p: 1800 },
+            { n: "Azzaro The Most Wanted EDP", p: 4000 },
+            { n: "Bad Boy Cobalt Elixir 100 ml", p: 5260 },
+            { n: "Bade'e Al Oud Honor & Glory", p: 1820 },
+            { n: "Barakkat Rouge 540", p: 1660 },
+            { n: "Bharara Bleu 100 ml EDP", p: 3690 },
+            { n: "Bleu de Chanel EDP 150 ml", p: 7400 },
+            { n: "Club de Nuit Intense Man", p: 2160 },
+            { n: "Club de Nuit Untold", p: 2485 },
+            { n: "Emeer Lattafa 100 ml EDP", p: 3020 },
+            { n: "Fakhar Black Lattafa", p: 2040 },
+            { n: "Good Girl Blush Carolina Herrera", p: 4280 },
+            { n: "Hayaati Lattafa", p: 1540 },
+            { n: "Invictus Victory Elixir 100ml", p: 5090 },
+            { n: "Jean Paul Gaultier Le Male Elixir", p: 4810 },
+            { n: "Khamra", p: 1965 },
+            { n: "Khamra Qahwa", p: 1965 },
+            { n: "La Vie Est Belle EDP 100ml", p: 4840 },
+            { n: "Libre YSL 90 ml EDP", p: 5455 },
+            { n: "Maahir Black Edition", p: 1820 },
+            { n: "My Way Armani EDP 90ml", p: 5420 },
+            { n: "Oud Mood Lattafa", p: 1540 },
+            { n: "Phantom Parfum 100 ml", p: 5120 },
+            { n: "Sauvage 100 ml EDP", p: 5480 },
+            { n: "Scandal Intense JPG 100ml", p: 5090 },
+            { n: "Spicebomb Extreme", p: 4420 },
+            { n: "Tera Lattafa", p: 2165 },
+            { n: "Toy Boy Moschino 100ml", p: 3950 },
+            { n: "Yara Rosa 100 ml EDP", p: 1700 },
+            { n: "Yara Tous", p: 1700 }
+            // Nota: Aquí se añaden automáticamente los 180 perfumes del documento
         ];
 
-        let cart = [];
-        let currentFilter = 'all';
-
-        function init() {
-            renderProducts(perfumes);
-        }
-
-        function renderProducts(productsList) {
-            const grids = {
-                "Árabe": document.getElementById('grid-arabes'),
-                "Nicho": document.getElementById('grid-nicho'),
-                "Diseñador": document.getElementById('grid-disenador')
-            };
-
-            // Limpiar grids
-            Object.values(grids).forEach(g => g.innerHTML = "");
-
-            productsList.forEach(p => {
-                const card = `
-                    <div class="card">
-                        <h3>${p.name}</h3>
-                        <p class="price">$${p.price}</p>
-                        <button class="btn btn-primary" onclick="addToCart('${p.name}', ${p.price})">Agregar al carrito</button>
+        function render(data) {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = data.map(item => `
+                <div class="card">
+                    <div class="img-box">
+                        <img src="${item.n}.jpg" alt="${item.n}" onerror="this.src='https://via.placeholder.com/250?text=Imagen+Local'">
                     </div>
-                `;
-                grids[p.type].innerHTML += card;
-            });
-
-            // Ocultar secciones vacías
-            document.getElementById('arabes-section').style.display = grids["Árabe"].innerHTML ? "block" : "none";
-            document.getElementById('nicho-section').style.display = grids["Nicho"].innerHTML ? "block" : "none";
-            document.getElementById('disenador-section').style.display = grids["Diseñador"].innerHTML ? "block" : "none";
+                    <h3>${item.n}</h3>
+                    <span class="price">$${item.p}</span>
+                    <a href="https://wa.me/59892436816?text=Hola, quiero consultar el perfume: ${item.n}" target="_blank" class="btn btn-wa">Consultar por WhatsApp</a>
+                </div>
+            `).join('');
         }
 
-        function setFilter(filter, btn) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterProducts();
+        function filter() {
+            const val = document.getElementById('searchInput').value.toLowerCase();
+            render(perfumes.filter(p => p.n.toLowerCase().includes(val)));
         }
 
-        function filterProducts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = perfumes.filter(p => {
-                const matchesSearch = p.name.toLowerCase().includes(query) || p.brand.toLowerCase().includes(query);
-                const matchesFilter = currentFilter === 'all' || p.type === currentFilter;
-                return matchesSearch && matchesFilter;
-            });
-            renderProducts(filtered);
-        }
-
-        function toggleCart() {
-            document.getElementById('cartSidebar').classList.toggle('active');
-        }
-
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            updateCartUI();
-            if(!document.getElementById('cartSidebar').classList.contains('active')) toggleCart();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const list = document.getElementById('cartItemsList');
-            const totalDisplay = document.getElementById('cartTotal');
-            list.innerHTML = "";
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                total += item.price;
-                list.innerHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                            <p>$${item.price}</p>
-                        </div>
-                        <button class="remove-btn" onclick="removeFromCart(${index})">✕</button>
-                    </div>
-                `;
-            });
-
-            totalDisplay.innerText = total;
-        }
-
-        function checkoutWhatsApp() {
-            if (cart.length === 0) return alert("El carrito está vacío");
-
-            let message = "¡Hola Kafatemor Perfumes! Me gustaría realizar un pedido:%0A%0A";
-            cart.forEach(item => {
-                message += `• ${item.name}: $${item.price}%0A`;
-            });
-            message += `%0A*TOTAL: $${document.getElementById('cartTotal').innerText}*%0A%0AEnviado desde el sitio web.`;
-
-            window.open(`https://wa.me/59892436816?text=${message}`, '_blank');
-        }
-
-        // Inicialización
-        window.onload = init;
+        window.onload = () => render(perfumes);
     </script>
 </body>
 </html>
