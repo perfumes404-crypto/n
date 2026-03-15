@@ -608,19 +608,16 @@
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body>
-  <div class="app-wrapper">
-   <!-- HEADER -->
+  <div class="app-wrapper"><!-- HEADER -->
    <header class="header">
     <div class="header-top">
      <div class="logo">
       KAFATEMOR
      </div>
-     <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Buscar perfume, marca...">
+     <div class="search-container"><input type="text" id="searchInput" class="search-input" placeholder="Buscar perfume, marca...">
       <div id="searchResults" class="search-results" style="display: none;"></div>
      </div>
-     <div class="header-actions">
-      <button class="btn-discover" onclick="scrollToSection('all-products')">Ver Catálogo</button> <button id="cartToggle" class="cart-btn">🛒 
+     <div class="header-actions"><button class="btn-discover" onclick="scrollToSection('all-products')">Ver Catálogo</button> <button id="cartToggle" class="cart-btn">🛒 
        <div id="cartBadge" class="cart-badge" style="display: none;">
         0
        </div></button>
@@ -641,15 +638,13 @@
      </div>
     </nav>
    </header><!-- MAIN CONTENT -->
-   <main style="flex: 1;">
-    <!-- HERO -->
+   <main style="flex: 1;"><!-- HERO -->
     <section class="hero" id="hero">
      <div class="hero-content">
       <p class="hero-label">✨ Esencias Premium del Mundo</p>
       <h1 class="hero-title" id="heroTitle">Kafatemor Perfumes</h1>
       <p class="hero-subtitle" id="heroSubtitle">Descubre nuestra colección exclusiva de perfumes árabes, de nicho y de diseñador</p>
-      <div class="hero-buttons">
-       <button class="btn-discover" onclick="scrollToSection('all-products')" style="background: linear-gradient(135deg, #d4af37 0%, #e8d9b8 100%); color: #0a0e17;">Explorar Catálogo</button> <button class="btn-discover" onclick="openCart()" style="background: rgba(212, 175, 55, 0.15); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);">Ver Carrito</button>
+      <div class="hero-buttons"><button class="btn-discover" onclick="scrollToSection('all-products')" style="background: linear-gradient(135deg, #d4af37 0%, #e8d9b8 100%); color: #0a0e17;">Explorar Catálogo</button> <button class="btn-discover" onclick="openCart()" style="background: rgba(212, 175, 55, 0.15); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);">Ver Carrito</button>
       </div>
      </div>
     </section><!-- BENEFITS -->
@@ -702,11 +697,9 @@
       </ul>
      </div>
      <div class="filter-bar">
-      <div class="search-box">
-       <input type="text" id="catalogSearch" class="search-input-full" placeholder="🔍 Buscar por nombre o marca...">
+      <div class="search-box"><input type="text" id="catalogSearch" class="search-input-full" placeholder="🔍 Buscar por nombre o marca...">
       </div>
-      <div class="filters">
-       <select class="filter-select" id="brandFilter" onchange="applyFilters()"> <option value="">Marca: Todas</option> </select> <select class="filter-select" id="sortFilter" onchange="applyFilters()"> <option value="name">Ordenar: A-Z</option> <option value="brand">Por Marca</option> <option value="popularity">Más Popular</option> </select>
+      <div class="filters"><select class="filter-select" id="brandFilter" onchange="applyFilters()"> <option value="">Marca: Todas</option> </select> <select class="filter-select" id="sortFilter" onchange="applyFilters()"> <option value="name">Ordenar: A-Z</option> <option value="brand">Por Marca</option> <option value="popularity">Más Popular</option> </select>
       </div>
      </div>
      <div id="productsList" class="products-grid"></div>
@@ -776,12 +769,12 @@
     </div>
    </div>
    <div class="cart-footer">
-    <div class="cart-total"><span>Total:</span> <span id="cartTotal">0</span>
-    </div><button class="btn-checkout" id="checkoutBtn" onclick="checkout()" disabled>💬 Consultar por WhatsApp</button>
+    <div class="cart-total">
+     <span>Total:</span> <span id="cartTotal">0</span>
+    </div><button class="btn-checkout" id="checkoutBtn" onclick="checkout()" disabled>💬 Finalizar compra por WhatsApp</button>
    </div>
   </div><!-- FLOATING BUTTONS -->
-  <div class="floating-buttons">
-   <a href="https://wa.me/59892436816" target="_blank" rel="noopener noreferrer" class="float-btn float-whatsapp" title="WhatsApp">💬</a> <a href="https://www.instagram.com/kafatemorperfumes.uy" target="_blank" rel="noopener noreferrer" class="float-btn float-instagram" title="Instagram">📷</a>
+  <div class="floating-buttons"><a href="https://wa.me/59892833236" target="_blank" rel="noopener noreferrer" class="float-btn float-whatsapp" title="WhatsApp"><img src="whatsapp.jpg" alt="WhatsApp" style="width: 32px; height: 32px; object-fit: contain;"></a> <a href="https://www.instagram.com/kafatemorperfumes.uy" target="_blank" rel="noopener noreferrer" class="float-btn float-instagram" title="Instagram"><img src="instagram.jpg" alt="Instagram" style="width: 32px; height: 32px; object-fit: contain;"></a>
   </div>
   <script>
     // ========== CATALOG (FLAT ARRAY) ==========
@@ -1061,7 +1054,7 @@
             <div class="product-brand">${product.brand}</div>
             <div class="product-name">${product.name}</div>
             <div class="product-footer">
-              <div class="product-price">Consultar</div>
+              <a href="https://wa.me/59892833236" target="_blank" rel="noopener noreferrer" class="product-price" style="text-decoration: none; cursor: pointer;">Consultar precio</a>
               <button class="btn-add-to-cart" onclick="addToCart('${product.id}')" title="Agregar al carrito">+ 🛒</button>
             </div>
           </div>
@@ -1172,7 +1165,7 @@
       if (cart.length === 0) return;
       const message = `Hola, quiero información sobre estos perfumes:\n\n${cart.map(item => `• ${item.name} (${item.brand}) - Cantidad: ${item.quantity}`).join('\n')}\n\n¿Cuál es el precio actual?`;
       const encoded = encodeURIComponent(message);
-      window.open(`https://wa.me/59892436816?text=${encoded}`, '_blank');
+      window.open(`https://wa.me/59892833236?text=${encoded}`, '_blank');
     }
 
     function saveCartToStorage() {
@@ -1316,6 +1309,6 @@
     // Initialize
     init();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dcdb9c2f146634f',t:'MTc3MzYwMDg1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dcdd3c4620a634f',t:'MTc3MzYwMTkyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
 
