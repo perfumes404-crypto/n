@@ -1520,14 +1520,15 @@
       }
     }
 
-    // ========== FILTERS & SEARCH ==========
-    function populateBrandFilter() {
-      const brands = [...new Set(catalog.map(p => p.brand))].sort();
-      const select = document.getElementById('brandFilter');
-      select.innerHTML = '<option value="">Marca: Todas</option>' + brands.map(b => `<option value="${b}">${b}</option>`).join('');
-    }
+// ========== FILTERS & SEARCH ==========
+function populateBrandFilter() {
+  const brands = [...new Set(catalog.map(p => p.brand))].sort();
+  const select = document.getElementById('brandFilter');
+  select.innerHTML = '<option value="">Marca: Todas</option>' + 
+    brands.map(b => `<option value="${b}">${b}</option>`).join('');
+}
 
-    function applyFilters() {
+function applyFilters() {
   const brand = document.getElementById('brandFilter').value;
   const sort = document.getElementById('sortFilter').value;
   const searchQuery = document.getElementById('catalogSearch').value.toLowerCase().trim();
@@ -1547,7 +1548,7 @@
     result = result.filter(p => p.brand === brand);
   }
 
-  // 🔽 ORDENAMIENTO
+  // 🔽 ORDENAMIENTO (FIX REAL)
   if (sort === 'name') {
     result.sort((a, b) => a.name.localeCompare(b.name));
   } 
@@ -1555,66 +1556,74 @@
     result.sort((a, b) => a.brand.localeCompare(b.brand));
   }
   else if (sort === 'price-asc') {
-    result.sort((a, b) => (prices[a.id] || 999999) - (prices[b.id] || 999999));
+    result.sort((a, b) => {
+      const priceA = Number(prices[a.id]) || 999999;
+      const priceB = Number(prices[b.id]) || 999999;
+      return priceA - priceB;
+    });
   }
   else if (sort === 'price-desc') {
-    result.sort((a, b) => (prices[b.id] || 0) - (prices[a.id] || 0));
+    result.sort((a, b) => {
+      const priceA = Number(prices[a.id]) || 0;
+      const priceB = Number(prices[b.id]) || 0;
+      return priceB - priceA;
+    });
   }
 
   filteredProducts = result;
   renderProducts(result);
-    }
+}
 
-    function setupCatalogSearch() {
+function setupCatalogSearch() {
   const input = document.getElementById('catalogSearch');
 
   input.addEventListener('input', function() {
-    applyFilters();
+    applyFilters(); // 🔥 SIEMPRE usar esto
   });
 }
 
-    function setupSearch() {
-      const input = document.getElementById('searchInput');
-      const results = document.getElementById('searchResults');
+function setupSearch() {
+  const input = document.getElementById('searchInput');
+  const results = document.getElementById('searchResults');
 
-      input.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
-        if (query.length < 1) {
-          results.style.display = 'none';
-          return;
-        }
+  input.addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
 
-        const matches = catalog.filter(p => 
-          p.name.toLowerCase().includes(query) || 
-          p.brand.toLowerCase().includes(query)
-        ).slice(0, 8);
-
-        if (matches.length) {
-          results.innerHTML = matches.map(p => `
-            <div class="search-result-item" onclick="selectSearchResult('${p.id}')">
-              <div class="result-name">${p.name}</div>
-              <div class="result-brand">${p.brand}</div>
-            </div>
-          `).join('');
-          results.style.display = 'block';
-        } else {
-          results.innerHTML = '<div class="search-result-item" style="text-align: center; color: rgba(232, 232, 232, 0.5);">Sin resultados</div>';
-          results.style.display = 'block';
-        }
-      });
-
-      document.addEventListener('click', function(e) {
-        if (e.target !== input) results.style.display = 'none';
-      });
+    if (query.length < 1) {
+      results.style.display = 'none';
+      return;
     }
 
-    function selectSearchResult(productId) {
-      addToCart(productId);
-      document.getElementById('searchInput').value = '';
-      document.getElementById('searchResults').style.display = 'none';
-      openCart();
-    }
+    const matches = catalog.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.brand.toLowerCase().includes(query)
+    ).slice(0, 8);
 
+    if (matches.length) {
+      results.innerHTML = matches.map(p => `
+        <div class="search-result-item" onclick="selectSearchResult('${p.id}')">
+          <div class="result-name">${p.name}</div>
+          <div class="result-brand">${p.brand}</div>
+        </div>
+      `).join('');
+      results.style.display = 'block';
+    } else {
+      results.innerHTML = '<div class="search-result-item" style="text-align: center; color: rgba(232, 232, 232, 0.5);">Sin resultados</div>';
+      results.style.display = 'block';
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (e.target !== input) results.style.display = 'none';
+  });
+}
+
+function selectSearchResult(productId) {
+  addToCart(productId);
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResults').style.display = 'none';
+  openCart();
+}
     // ========== UTILITIES ==========
     function scrollToSection(id) {
       const element = document.getElementById(id);
