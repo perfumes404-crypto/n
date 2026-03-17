@@ -699,7 +699,13 @@
      <div class="filter-bar">
       <div class="search-box"><input type="text" id="catalogSearch" class="search-input-full" placeholder="🔍 Buscar por nombre o marca...">
       </div>
-      <div class="filters"><select class="filter-select" id="brandFilter" onchange="applyFilters()"> <option value="">Marca: Todas</option> </select> <select class="filter-select" id="sortFilter" onchange="applyFilters()"> <option value="name">Ordenar: A-Z</option> <option value="brand">Por Marca</option> <option value="popularity">Más Popular</option> </select>
+<select class="filter-select" id="sortFilter" onchange="applyFilters()">
+  <option value="name">Ordenar: A-Z</option>
+  <option value="brand">Por Marca</option>
+  <option value="popularity">Más Popular</option>
+  <option value="price-asc">Precio: menor a mayor</option>
+  <option value="price-desc">Precio: mayor a menor</option>
+</select>
       </div>
      </div>
      <div id="productsList" class="products-grid"></div>
@@ -1557,7 +1563,6 @@
 
   filteredProducts = result;
   renderProducts(result);
-}
     }
 
     function setupCatalogSearch() {
