@@ -1639,8 +1639,17 @@ function setupCatalogSearch() {
   const input = document.getElementById('catalogSearch');
   if (!input) return;
 
+  // 🔍 Filtrar mientras escribe
   input.addEventListener('input', function() {
     applyFilters();
+  });
+
+  // ⌨️ ENTER también aplica filtros
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      applyFilters();
+    }
   });
 }
 
@@ -1649,6 +1658,7 @@ function setupSearch() {
   const results = document.getElementById('searchResults');
   if (!input || !results) return;
 
+  // 🔍 Dropdown sugerencias
   input.addEventListener('input', function() {
     const query = this.value.toLowerCase().trim();
 
@@ -1676,16 +1686,45 @@ function setupSearch() {
     }
   });
 
+  // ⌨️ ENTER = buscar en catálogo
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      const query = this.value.toLowerCase().trim();
+      if (!query) return;
+
+      const catalogSearch = document.getElementById('catalogSearch');
+      if (catalogSearch) {
+        catalogSearch.value = query;
+      }
+
+      applyFilters();
+      scrollToSection('all-products');
+      results.style.display = 'none';
+    }
+  });
+
+  // cerrar dropdown al hacer click afuera
   document.addEventListener('click', function(e) {
     if (e.target !== input) results.style.display = 'none';
   });
 }
 
 function selectSearchResult(productId) {
-  addToCart(productId);
+  const product = catalog.find(p => p.id === productId);
+  if (!product) return;
+
+  const catalogSearch = document.getElementById('catalogSearch');
+  if (catalogSearch) {
+    catalogSearch.value = product.name;
+  }
+
+  applyFilters();
+  scrollToSection('all-products');
+
   document.getElementById('searchInput').value = '';
   document.getElementById('searchResults').style.display = 'none';
-  openCart();
 }
     // ========== UTILITIES ==========
     function scrollToSection(id) {
