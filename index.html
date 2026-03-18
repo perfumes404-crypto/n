@@ -1368,7 +1368,7 @@
     const bestsellers = [
       { id: 'honor-and-glory', price: '1990' },
       { id: 'lattafa-khamrah', price: '1990' },
-      { id: 'lattafa-mandarin-sky', price: '1990' },
+      { id: 'sky-mandarine', price: '1990' },
       { id: 'lattafa-pride-fakhar-black', price: '2090' }
     ];
 
@@ -1478,7 +1478,6 @@ document.getElementById('priceFilter')?.addEventListener('change', applyFilters)
     }
 
     function updateCart() {
-   function updateCart() {
   const itemsList = document.getElementById('cartItemsList');
   const checkoutBtn = document.getElementById('checkoutBtn');
   const cartBadge = document.getElementById('cartBadge');
@@ -1530,8 +1529,7 @@ document.getElementById('priceFilter')?.addEventListener('change', applyFilters)
     function closeCart() {
       document.getElementById('cartSidebar').classList.remove('active');
     }
-
-    function checkout() {
+   
   function checkout() {
   if (cart.length === 0) return;
 
